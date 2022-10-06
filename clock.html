@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+    <head>
+        <title>Clock</title>
+
+        <style type="text/css"> 
+            body { background-color: black; }
+        </style>
+
+        <script type="text/javascript">
+
+            function retrieveClock() {
+
+                let pathImage = document.getElementById('selectFont').value;
+
+                const d = new Date();
+                let hours = d.getHours();
+                let minutes = d.getMinutes();
+                let seconds = d.getSeconds();
+
+                let h1 = 'n' + (hours > 9 ? String(hours).substring(0,1) : '0') + '.png';
+                let h2 = 'n' + (hours < 10 ? String(hours).substring(0,1) : String(hours).substring(1,2))  + '.png';
+                
+                let m1 = 'n' + (minutes > 9 ? String(minutes).substring(0,1) : '0') + '.png';
+                let m2 = 'n' + (minutes < 10 ? String(minutes).substring(0,1) : String(minutes).substring(1,2)) + '.png';
+
+                let s1 = 'n' + (seconds > 9 ? String(seconds).substring(0,1) : '0') + '.png';
+                let s2 = 'n' + (seconds < 10 ? String(seconds).substring(0,1) : String(seconds).substring(1,2)) + '.png';
+
+                let ptn = 'point_' + ( pointFull ? 'full' : 'empty' ) + '.png'; 
+                pointFull = !pointFull;
+
+                document.getElementById('i1').src=pathImage + '/' + h1;
+                document.getElementById('i2').src=pathImage + '/' + h2;
+                document.getElementById('p1').src=pathImage + '/' + ptn;
+                document.getElementById('i3').src=pathImage + '/' + m1;
+                document.getElementById('i4').src=pathImage + '/' + m2;
+                document.getElementById('p2').src=pathImage + '/' + ptn;
+                document.getElementById('i5').src=pathImage + '/' + s1;
+                document.getElementById('i6').src=pathImage + '/' + s2;
+            }
+
+            let pointFull = true;
+            window.onload = setInterval(retrieveClock, 1000); 
+
+        </script>
+
+    </head>    
+    <body>
+        <div>
+            <img src="digital/n_empty.png" id="i1" alt="">
+            <img src="digital/n_empty.png" id="i2" alt="">
+            <img src="digital/point_empty.png" id="p1" alt="">
+            <img src="digital/n_empty.png" id="i3" alt="">
+            <img src="digital/n_empty.png" id="i4" alt="">
+            <img src="digital/point_empty.png" id="p2" alt="">
+            <img src="digital/n_empty.png" id="i5" alt="">
+            <img src="digital/n_empty.png" id="i6" alt="">
+        </div>
+        <br><br>
+        <select name="selectFont" id="selectFont" style="font-size: 20px; width: 150px;">
+            <option value="digital" selected>Digital</option>
+            <option value="helvetica">Helvetica</option>
+        </select>
+
+    </body>
+</html>
+
